@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #071a2f;
+  --color-navy: #0b2a4a;
+  --color-navy-light: #12406e;
+  --color-ice: #22c7f0;
+  /* Darker ice for text on light backgrounds (at least 4.8:1 on white, ice-soft and slate-50). */
+  --color-ice-deep: #007595;
+  --color-ice-soft: #e6f8fd;
+  --color-sun: #ffc93c;
+  --color-whatsapp: #25d366;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Keeps anchor jumps and keyboard focus clear of the sticky header. */
+html { scroll-padding-top: 5rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body { background: #ffffff; color: var(--color-ink); }
+
+.frost {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(34, 199, 240, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 35%),
+    linear-gradient(135deg, var(--color-ink), var(--color-navy) 55%, var(--color-navy-light));
+}
