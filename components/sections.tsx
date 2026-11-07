@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { CheckCircle2, Cog, Gauge, Layers, MapPin, Phone, Search, Snowflake, Truck, Zap } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons"
 import { QuoteForm } from "@/components/quote-form"
@@ -169,7 +170,10 @@ export function Brands() {
           ))}
         </ul>
         <p className="mx-auto mt-8 max-w-2xl text-center text-slate-600">
-          We regas with {site.gas}. Some newer cars use a different gas called R1234yf, so send us your make, model and year and we'll confirm.
+          We regas with {site.gas}. Some newer cars use a different gas called R1234yf.{" "}
+          <Link href="/which-aircon-gas" className="font-semibold text-navy underline">
+            Which gas does my car use?
+          </Link>{" "}
           Don't see your brand?{" "}
           <a href={whatsappHref("Hi ProRegas, do you regas my car? It's a ")} target="_blank" rel="noopener noreferrer" className="font-semibold text-navy underline">
             Ask us on WhatsApp
@@ -229,6 +233,13 @@ export function Faq() {
             </details>
           ))}
         </div>
+        <p className="mt-6 text-center text-slate-600">
+          Not sure which gas your car uses?{" "}
+          <Link href="/which-aircon-gas" className="font-semibold text-navy underline">
+            Read our aircon gas guide
+          </Link>
+          .
+        </p>
       </div>
     </section>
   )

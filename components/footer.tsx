@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { MapPin, Phone } from "lucide-react"
 import { Logo, WhatsAppIcon } from "@/components/icons"
 import { site, telHref, whatsappHref } from "@/lib/site"
@@ -60,6 +61,14 @@ export function Footer() {
             <li>Leak repairs</li>
             <li>Compressor problems</li>
             <li>Electrical and fan faults</li>
+          </ul>
+          <h2 className="mt-8 text-sm font-semibold uppercase tracking-widest text-white">Guides</h2>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <Link href="/which-aircon-gas" className="text-white underline underline-offset-4 hover:text-ice">
+                Which aircon gas does my car use?
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
