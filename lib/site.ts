@@ -125,7 +125,7 @@ export const faqs = [
   },
   {
     q: "Which gas do you use?",
-    a: `We regas with ${site.gas}, the gas used in most cars made before about 2017. Some newer cars use a different gas called R1234yf, so send us your make, model and year and we'll confirm we can regas yours.`,
+    a: `We regas with ${site.gas}. Many cars use it, but some newer models use a different gas called R1234yf, and the year alone doesn't tell you which. Send us your make, model and year and we'll confirm we can regas yours.`,
   },
   {
     q: "My aircon blows cold then warm. Is it just gas?",
