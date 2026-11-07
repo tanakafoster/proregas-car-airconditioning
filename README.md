@@ -9,23 +9,31 @@ Built with Next.js (App Router), React and Tailwind CSS. The build produces plai
 
 ## What's on the site
 
-The home page has:
+| Page | Address |
+| --- | --- |
+| Home: a short summary of everything below, with Call and WhatsApp buttons and the quote form | `/` |
+| Services, and a page for each of the 6 services (signs, common causes, what we do, questions) | `/services/`, `/services/car-aircon-regas/` and so on |
+| Pricing: R134a regas from $30, what we need for a quote, repairs | `/pricing/` |
+| Areas, and a page for each of the 55 Harare suburbs and nearby towns | `/areas/`, `/areas/borrowdale/` and so on |
+| Car brands we regas, grouped by where the make comes from | `/car-brands/` |
+| FAQ | `/faq/` |
+| Contact, with the quote form | `/contact/` |
+| Guide: "Which aircon gas does my car use?" (R134a or R1234yf, with example cars from Honda and Toyota data sheets) | `/which-aircon-gas/` |
 
-- a hero with the tagline, Call and WhatsApp buttons, and the R134a regas starting price
-- services, pricing, how it works, the car brands we regas, Harare service areas and an FAQ
-- a quote form that opens WhatsApp with the customer's details filled in. It still opens WhatsApp, with a short message, if the page's JavaScript fails to load.
-- a floating WhatsApp button
+The quote form opens WhatsApp with the customer's details filled in. It still opens WhatsApp, with a short message, if the page's JavaScript fails to load. A floating WhatsApp button shows on every page.
 
-There is also a guide page, "Which aircon gas does my car use?" (`/which-aircon-gas/`). It explains R134a and R1234yf with example cars from Honda and Toyota data sheets, and lists its sources. The home page links to it from the car brands section and below the FAQ, and the footer links to it on every page.
-
-It also has `sitemap.xml`, `robots.txt`, a share image for WhatsApp and Facebook links (`/og.png`, drawn by `app/og.png/route.tsx`), icons, and AutoRepair and FAQ structured data.
+The site also has `sitemap.xml` (every page), `robots.txt`, a share image for WhatsApp and Facebook links (`/og.png`, drawn by `app/og.png/route.tsx`), icons, and structured data: AutoRepair on every page, Service on the service and suburb pages, BreadcrumbList on inner pages and FAQPage on `/faq/`.
 
 ## Editing content
 
 | What | Where |
 | --- | --- |
-| Phone, domain, price, gas type, services, steps, car brands, suburbs, FAQ | `lib/site.ts` |
-| Section headings and intros, hero and pricing text, contact text | `components/sections.tsx` |
+| Phone, domain, price, gas type, services (names, card text, page addresses), steps, car brands, suburbs, FAQ | `lib/site.ts` |
+| Service page text (signs, causes, what we do, questions, sources) | `lib/service-pages.ts` |
+| The short description on each suburb's page, with its sources | `lib/area-facts.ts` |
+| Home page sections and the parts shared with other pages | `components/sections.tsx` |
+| Page banner, breadcrumbs and booking box used on inner pages | `components/page.tsx` |
+| Each page's layout | `app/<page>/page.tsx`, e.g. `app/pricing/page.tsx`, `app/services/[slug]/page.tsx`, `app/areas/[slug]/page.tsx` |
 | Quote form fields and options | `components/quote-form.tsx` |
 | Gas guide page (text, example cars and sources) | `app/which-aircon-gas/page.tsx` |
 | Footer | `components/footer.tsx` |
@@ -35,6 +43,8 @@ It also has `sitemap.xml`, `robots.txt`, a share image for WhatsApp and Facebook
 | Pages listed in `sitemap.xml` (add any new page here) | `app/sitemap.ts` |
 | Share image layout (its text comes from `lib/site.ts`) | `app/og.png/route.tsx` |
 | Logo and icons | `components/icons.tsx`, `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png` |
+
+Adding a suburb to `lib/site.ts` adds its page, its link on the Areas and home pages and its sitemap entry. The same goes for a service, which also needs its text in `lib/service-pages.ts`.
 
 The price is set once, as `regasFromUsd` in `lib/site.ts`. Every price on the site, the share image and the structured data use it.
 
@@ -51,6 +61,8 @@ npm run build   # writes the finished site to out/
 To preview the built site, run `npm start`, which serves the `out/` folder at http://localhost:3000.
 
 ## Deploy
+
+The site is currently deployed on Vercel at https://proregas-car-airconditioning.vercel.app, which rebuilds it every time `main` changes.
 
 `npm run build` creates an `out/` folder of plain HTML, CSS, JS and images. You can host it anywhere:
 

@@ -9,8 +9,8 @@ export function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) 
 export function Logo({ className = "h-9 w-9" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <rect width="48" height="48" rx="12" fill="#22c7f0" />
-      <g stroke="#071a2f" strokeWidth="3" strokeLinecap="round" fill="none">
+      <rect width="48" height="48" rx="12" fill="#1d4ed8" />
+      <g stroke="#ffffff" strokeWidth="3" strokeLinecap="round" fill="none">
         <path d="M24 9v30M11 16.5l26 15M37 16.5l-26 15" />
         <path d="M19.5 10.5 24 14l4.5-3.5M19.5 37.5 24 34l4.5 3.5" />
       </g>

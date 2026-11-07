@@ -125,7 +125,7 @@ export default function WhichAirconGas() {
           <nav aria-label="Breadcrumb" className="text-sm text-white/80">
             <ol className="flex flex-wrap gap-2">
               <li>
-                <Link href="/" className="underline underline-offset-4 hover:text-sun">
+                <Link href="/" className="underline underline-offset-4 hover:text-ice">
                   Home
                 </Link>
               </li>
@@ -153,8 +153,9 @@ export default function WhichAirconGas() {
         <H2>The year doesn't tell you</H2>
         <p className="mt-4 text-lg text-slate-700">
           Since 2017, all new cars sold in the EU have had to use a gas like R1234yf.
-          <Cite ids={["eu-rule"]} /> Japanese makers changed over one model at a time, so cars of the same age can use different
-          gases. These examples come from the manufacturers' own data sheets:
+          <Cite ids={["eu-rule"]} /> Japan has no single cut-off date: its rule limits the average across each maker's new cars, so
+          carmakers changed over one model at a time and cars of the same age can use different gases.
+          <Cite ids={["fit-2017-04", "axio"]} /> These examples are cars sold new in Japan, from Honda's and Toyota's own data sheets:
         </p>
         {/* Cards on phones, a table on wider screens. */}
         <ul className="mt-6 space-y-3 sm:hidden">
@@ -165,7 +166,7 @@ export default function WhichAirconGas() {
                 <Cite ids={e.sources} />
               </p>
               <p className="mt-2 text-slate-700">
-                <span className="font-semibold">{e.gas}</span> <span className="text-sm text-slate-600">({e.sticker} on the sticker)</span>
+                <span className="font-semibold">{e.gas}</span> <span className="text-sm text-slate-600">(listed as {e.sticker})</span>
               </p>
               <p className="text-sm text-slate-600">
                 Amount: {e.amount}
@@ -176,7 +177,7 @@ export default function WhichAirconGas() {
         </ul>
         <div className="mt-6 hidden overflow-hidden rounded-2xl border border-slate-200 sm:block">
           <table className="w-full text-left">
-            <caption className="sr-only">Aircon gas used by some common Japanese cars</caption>
+            <caption className="sr-only">Aircon gas in some Japanese-market cars</caption>
             <thead className="bg-slate-50 text-slate-700">
               <tr>
                 <th scope="col" className="px-4 py-3 font-semibold">
@@ -199,7 +200,7 @@ export default function WhichAirconGas() {
                   </th>
                   <td className="px-4 py-3">
                     <span className="font-semibold">{e.gas}</span>
-                    <span className="block whitespace-nowrap text-sm text-slate-600">{e.sticker} on the sticker</span>
+                    <span className="block whitespace-nowrap text-sm text-slate-600">listed as {e.sticker}</span>
                   </td>
                   <td className="px-4 py-3">
                     <span className="whitespace-nowrap">{e.amount}</span>
@@ -211,8 +212,10 @@ export default function WhichAirconGas() {
           </table>
         </div>
         <p className="mt-4 text-slate-600">
-          So a 3rd-generation Honda Fit uses R134a, while a 4th-generation Fit or a 2nd-generation Aqua uses R1234yf. Hybrids can
-          use either gas.
+          So a Japanese-market 3rd-generation Honda Fit uses R134a, while a Japanese-market 4th-generation Fit or 2nd-generation Aqua
+          uses R1234yf. Being a hybrid doesn't tell you either: the 3rd-generation Fit hybrid and the Axio hybrid use R134a, while
+          4th-generation Fit hybrids and the Aqua use R1234yf. The same model built for another country can use a different gas, so
+          check the sticker.
         </p>
 
         <H2>How to check your car</H2>
@@ -241,7 +244,7 @@ export default function WhichAirconGas() {
             send us your car's details and we'll tell you what we can do.
           </p>
           <div className="mt-6">
-            <CallButtons message="Hi ProRegas, which aircon gas does my car use? It's a " />
+            <CallButtons message="Hi ProRegas, which aircon gas does my car use? It's a " tone="light" />
           </div>
         </div>
 

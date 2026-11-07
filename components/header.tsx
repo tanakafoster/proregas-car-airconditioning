@@ -8,15 +8,20 @@ import { Menu, Phone, X } from "lucide-react"
 import { Logo, WhatsAppIcon } from "@/components/icons"
 import { site, telHref, whatsappHref } from "@/lib/site"
 
-// Plain <a> links (not next/link) so the browser's own fragment navigation also moves keyboard focus to the section.
 const nav = [
-  { href: "/#services", label: "Services" },
-  { href: "/#pricing", label: "Pricing" },
-  { href: "/#brands", label: "Car Brands" },
-  { href: "/#locations", label: "Harare Locations" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/car-brands", label: "Car Brands" },
+  { href: "/areas", label: "Areas" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ]
+
+// "/services/car-aircon-regas/" is part of "/services". usePathname may or may not end in "/" (trailingSlash).
+function isCurrent(pathname: string, href: string) {
+  const path = pathname.replace(/\/$/, "") || "/"
+  return path === href || path.startsWith(`${href}/`)
+}
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -39,7 +44,7 @@ export function Header() {
       if (inMenu) toggle.current?.focus()
     }
     // A click anywhere outside the menu (including links to sections on the page) closes it first,
-    // so the sticky header is already collapsed when the browser jumps to the section.
+    // so the sticky header is already collapsed when the browser jumps to a section.
     const onClick = (e: MouseEvent) => {
       const target = e.target as Node
       if (menu.current?.contains(target) || toggle.current?.contains(target)) return
@@ -65,36 +70,41 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-ink/95 text-white backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 text-ink backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-8">
         <Link href="/" className="flex items-center gap-3" onClick={onLogoClick}>
           <Logo />
           <span className="leading-tight">
             <span className="block text-lg font-extrabold tracking-tight">
-              Pro<span className="text-ice">Regas</span>
+              Pro<span className="text-royal">Regas</span>
             </span>
-            <span className="block text-[11px] uppercase tracking-widest text-white/70">Car Air Conditioning</span>
+            <span className="block text-[11px] uppercase tracking-widest text-slate-600">Car Air Conditioning</span>
           </span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium lg:flex" aria-label="Main">
           {nav.map((n) => (
-            <a key={n.href} href={n.href} className="text-white/80 transition hover:text-ice">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={isCurrent(pathname, n.href) ? "page" : undefined}
+              className="text-slate-700 transition hover:text-royal aria-[current=page]:font-semibold aria-[current=page]:text-royal aria-[current=page]:underline aria-[current=page]:underline-offset-8"
+            >
               {n.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
           <a
             href={telHref}
-            className="hidden items-center gap-2 rounded-full bg-sun px-4 py-2 text-sm font-bold text-ink transition hover:brightness-95 sm:flex"
+            className="hidden items-center gap-2 rounded-full bg-royal px-4 py-2 text-sm font-bold text-white transition hover:brightness-110 sm:flex"
           >
             <Phone className="h-4 w-4" aria-hidden="true" /> {site.phoneDisplay}
           </a>
           <a
             href={telHref}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-sun text-ink sm:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-royal text-white sm:hidden"
             aria-label={`Call ${site.phoneDisplay}`}
           >
             <Phone className="h-5 w-5" aria-hidden="true" />
@@ -102,7 +112,7 @@ export function Header() {
           <button
             ref={toggle}
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 text-royal lg:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -117,15 +127,20 @@ export function Header() {
         <nav
           ref={menu}
           id="mobile-menu"
-          className="max-h-[calc(100dvh-5.25rem)] overflow-y-auto overscroll-contain border-t border-white/10 px-4 pb-5 lg:hidden"
+          className="max-h-[calc(100dvh-5.25rem)] overflow-y-auto overscroll-contain border-t border-slate-200 px-4 pb-5 lg:hidden"
           aria-label="Mobile"
         >
           <ul className="flex flex-col py-2">
             {nav.map((n) => (
               <li key={n.href}>
-                <a href={n.href} onClick={() => setOpen(false)} className="block py-3 text-base text-white/90">
+                <Link
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isCurrent(pathname, n.href) ? "page" : undefined}
+                  className="block py-3 text-base text-slate-800 aria-[current=page]:font-semibold aria-[current=page]:text-royal"
+                >
                   {n.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
