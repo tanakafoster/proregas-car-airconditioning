@@ -7,8 +7,9 @@ import { areas, brands, defaultWhatsappMessage, site, telHref, whatsappNumber } 
 
 const issues = ["Aircon regas", "Not blowing cold", "Gas keeps running out", "Noise from the aircon", "Fan or electrical fault", "Other"]
 
-export function QuoteForm() {
-  const [form, setForm] = useState({ name: "", car: "", model: "", area: "", issue: issues[0], notes: "" })
+// defaultArea and defaultMake fill in the Location and Car make fields, e.g. on a suburb's or a car brand's page.
+export function QuoteForm({ defaultArea = "", defaultMake = "" }: { defaultArea?: string; defaultMake?: string }) {
+  const [form, setForm] = useState({ name: "", car: defaultMake, model: "", area: defaultArea, issue: issues[0], notes: "" })
   const message = useRef<HTMLInputElement>(null)
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }))
