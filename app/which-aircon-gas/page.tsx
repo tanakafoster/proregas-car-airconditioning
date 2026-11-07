@@ -15,37 +15,101 @@ export const metadata: Metadata = {
   openGraph: { ...baseOpenGraph, url: path, title, description },
 }
 
-// Examples taken from the manufacturers' own environmental data sheets (linked under Sources).
-const examples = [
-  { car: "Honda Fit, 3rd generation (GK3–GK6, and the GP5/GP6 hybrid)", gas: "R134a", sticker: "HFC-134a", amount: "430 g", source: 0 },
-  { car: "Toyota Corolla Axio (NZE161, NZE164, NRE161, and the NKE165 hybrid)", gas: "R134a", sticker: "HFC-134a", amount: "370 g or 420 g", source: 1 },
-  { car: "Honda Fit, 4th generation (GR and GS models, including hybrids)", gas: "R1234yf", sticker: "HFO-1234yf", amount: "", source: 2 },
-  { car: "Toyota Aqua, 2nd generation (MXPK11, MXPK16)", gas: "R1234yf", sticker: "HFO-1234yf", amount: "450 g", source: 3 },
-]
-
+// Listed in the order the page first cites them. The [1], [2]... links and the Sources list use these numbers.
 const sources = [
-  { label: "Honda Fit environmental specifications, April 2017 (Japanese)", url: "https://www.honda.co.jp/auto-archive/fit/2017/common/pdf/fit_environment_list.pdf" },
-  { label: "Toyota Corolla Axio environmental specifications (Japanese)", url: "https://toyota.jp/pages/contents/corollaaxio/002_p_010/pdf/corollaaxio_ecology_202403.pdf" },
-  { label: "Honda Fit environmental specifications, July 2026 (Japanese)", url: "https://www.honda.co.jp/Fit/common/pdf/fit_environment_list.pdf" },
-  { label: "Toyota Aqua environmental specifications, 2024 (Japanese)", url: "https://toyota.jp/pages/contents/aqua/002_p_001/pdf/aqua_ecology_202404.pdf" },
   {
+    id: "eu-rule",
     label: "European Commission: mobile air-conditioning systems (the 2017 rule for new cars in the EU)",
     url: "https://single-market-economy.ec.europa.eu/sectors/automotive-industry/environmental-protection/mobile-air-conditioning-systems-macs_en",
   },
-  { label: "Delphi: servicing air conditioning on hybrid vehicles", url: "https://delphiautoparts.com/en-gb/mom/how-to/servicing-air-conditioning-on-hybrid-vehicles" },
+  {
+    id: "fit-2017-04",
+    label: "Honda Fit environmental specifications, April 2017 (Japanese)",
+    url: "https://www.honda.co.jp/auto-archive/fit/2017/common/pdf/fit_environment_list.pdf",
+  },
+  {
+    id: "fit-2017-06",
+    label: "Honda Fit environmental specifications, June 2017 (Japanese)",
+    url: "https://www.honda.co.jp/auto-archive/fit/2020/common/pdf/fit_environment_list.pdf",
+  },
+  {
+    id: "axio",
+    label: "Toyota Corolla Axio environmental specifications (Japanese)",
+    url: "https://toyota.jp/pages/contents/corollaaxio/002_p_010/pdf/corollaaxio_ecology_202403.pdf",
+  },
+  {
+    id: "fit-2022-04",
+    label: "Honda Fit environmental specifications, April 2022 (Japanese)",
+    url: "https://www.honda.co.jp/auto-archive/fit/2022/common/pdf/fit_environment_list.pdf",
+  },
+  {
+    id: "fit-2026-07",
+    label: "Honda Fit environmental specifications, July 2026 (Japanese)",
+    url: "https://www.honda.co.jp/Fit/common/pdf/fit_environment_list.pdf",
+  },
+  {
+    id: "aqua",
+    label: "Toyota Aqua environmental specifications, 2024 (Japanese)",
+    url: "https://toyota.jp/pages/contents/aqua/002_p_001/pdf/aqua_ecology_202404.pdf",
+  },
+  {
+    id: "hybrid-oil",
+    label: "Delphi: servicing air conditioning on hybrid vehicles",
+    url: "https://delphiautoparts.com/en-gb/mom/how-to/servicing-air-conditioning-on-hybrid-vehicles",
+  },
+] as const
+
+type SourceId = (typeof sources)[number]["id"]
+
+type Example = { car: string; gas: string; sticker: string; amount: string; amountNote?: string; sources: SourceId[] }
+
+// Examples taken from the manufacturers' own environmental data sheets.
+const examples: Example[] = [
+  {
+    car: "Honda Fit, 3rd generation (GK3–GK6, and the GP5/GP6 hybrid)",
+    gas: "R134a",
+    sticker: "HFC-134a",
+    amount: "430 g",
+    sources: ["fit-2017-04", "fit-2017-06"],
+  },
+  {
+    car: "Toyota Corolla Axio (NZE161, NZE164, NRE161, and the NKE165 hybrid)",
+    gas: "R134a",
+    sticker: "HFC-134a",
+    amount: "370 g or 420 g",
+    sources: ["axio"],
+  },
+  {
+    car: "Honda Fit, 4th generation (GR1–GR8, GS4 and GS6, including hybrids)",
+    gas: "R1234yf",
+    sticker: "HFO-1234yf",
+    amount: "370 g or 420 g",
+    amountNote: "for GR models",
+    sources: ["fit-2022-04", "fit-2026-07"],
+  },
+  { car: "Toyota Aqua, 2nd generation (MXPK11, MXPK16)", gas: "R1234yf", sticker: "HFO-1234yf", amount: "450 g", sources: ["aqua"] },
 ]
 
-function SourceLink({ index }: { index: number }) {
+// Numbered links to the sources, shown like [2][3].
+function Cite({ ids }: { ids: SourceId[] }) {
   return (
-    <a
-      href={sources[index].url}
-      className="ml-1 text-ice-deep underline"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Source: ${sources[index].label}`}
-    >
-      <sup>source</sup>
-    </a>
+    <sup className="ml-0.5">
+      {ids.map((id) => {
+        const n = sources.findIndex((s) => s.id === id)
+        return (
+          <a
+            key={id}
+            href={sources[n].url}
+            className="px-0.5 text-ice-deep underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Source ${n + 1}: ${sources[n].label}`}
+          >
+            [{n + 1}]
+          </a>
+        )
+      })}
+    </sup>
   )
 }
 
@@ -89,7 +153,7 @@ export default function WhichAirconGas() {
         <H2>The year doesn't tell you</H2>
         <p className="mt-4 text-lg text-slate-700">
           Since 2017, all new cars sold in the EU have had to use a gas like R1234yf.
-          <SourceLink index={4} /> Japanese makers changed over one model at a time, so cars of the same age can use different
+          <Cite ids={["eu-rule"]} /> Japanese makers changed over one model at a time, so cars of the same age can use different
           gases. These examples come from the manufacturers' own data sheets:
         </p>
         {/* Cards on phones, a table on wider screens. */}
@@ -98,12 +162,15 @@ export default function WhichAirconGas() {
             <li key={e.car} className="rounded-2xl border border-slate-200 p-4">
               <p className="font-medium">
                 {e.car}
-                <SourceLink index={e.source} />
+                <Cite ids={e.sources} />
               </p>
               <p className="mt-2 text-slate-700">
                 <span className="font-semibold">{e.gas}</span> <span className="text-sm text-slate-600">({e.sticker} on the sticker)</span>
               </p>
-              <p className="text-sm text-slate-600">Amount: {e.amount || "not listed"}</p>
+              <p className="text-sm text-slate-600">
+                Amount: {e.amount}
+                {e.amountNote && ` (${e.amountNote})`}
+              </p>
             </li>
           ))}
         </ul>
@@ -128,13 +195,16 @@ export default function WhichAirconGas() {
                 <tr key={e.car}>
                   <th scope="row" className="px-4 py-3 font-medium">
                     {e.car}
-                    <SourceLink index={e.source} />
+                    <Cite ids={e.sources} />
                   </th>
                   <td className="px-4 py-3">
                     <span className="font-semibold">{e.gas}</span>
                     <span className="block whitespace-nowrap text-sm text-slate-600">{e.sticker} on the sticker</span>
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3">{e.amount || "Not listed"}</td>
+                  <td className="px-4 py-3">
+                    <span className="whitespace-nowrap">{e.amount}</span>
+                    {e.amountNote && <span className="block whitespace-nowrap text-sm text-slate-600">{e.amountNote}</span>}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -161,7 +231,7 @@ export default function WhichAirconGas() {
         <H2>Hybrid cars</H2>
         <p className="mt-4 text-lg text-slate-700">
           Some hybrids have an electric aircon compressor that needs a special oil.
-          <SourceLink index={5} /> Always tell us if your car is a hybrid when you book.
+          <Cite ids={["hybrid-oil"]} /> Always tell us if your car is a hybrid when you book.
         </p>
 
         <div className="mt-12 rounded-3xl bg-ice-soft p-6 sm:p-8">
@@ -178,7 +248,7 @@ export default function WhichAirconGas() {
         <h2 className="mt-12 text-lg font-bold">Sources</h2>
         <ol className="mt-3 list-decimal space-y-2 pl-6 text-sm text-slate-600">
           {sources.map((s) => (
-            <li key={s.url}>
+            <li key={s.id}>
               <a href={s.url} className="underline hover:text-navy" target="_blank" rel="noopener noreferrer">
                 {s.label}
               </a>
