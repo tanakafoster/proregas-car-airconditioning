@@ -1,9 +1,8 @@
-import Link from "next/link"
 import { MapPin, Phone } from "lucide-react"
 import { Logo, WhatsAppIcon } from "@/components/icons"
-import { areas, site, telHref, whatsappHref } from "@/lib/site"
+import { site, telHref, whatsappHref } from "@/lib/site"
 
-const featured = ["borrowdale", "avondale", "mount-pleasant", "msasa", "greendale", "westgate", "waterfalls", "harare-cbd"]
+const popular = ["Borrowdale", "Avondale", "Mount Pleasant", "Msasa", "Greendale", "Westgate", "Waterfalls", "Harare CBD"]
 
 export function Footer() {
   return (
@@ -16,7 +15,9 @@ export function Footer() {
               Pro<span className="text-ice">Regas</span>
             </span>
           </div>
-          <p className="mt-4 text-sm">{site.name}. {site.tagline} across {site.city}, {site.country}.</p>
+          <p className="mt-4 text-sm">
+            {site.name}. {site.tagline} in {site.city}, {site.country}.
+          </p>
         </div>
 
         <div>
@@ -24,7 +25,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm">
             <li>
               <a href={telHref} className="flex items-center gap-2 hover:text-ice">
-                <Phone className="h-4 w-4" /> {site.phoneDisplay}
+                <Phone className="h-4 w-4" aria-hidden="true" /> Call {site.phoneDisplay}
               </a>
             </li>
             <li>
@@ -33,7 +34,7 @@ export function Footer() {
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" /> Mobile service, {site.city}
+              <MapPin className="h-4 w-4" aria-hidden="true" /> Mobile service, {site.city}
             </li>
           </ul>
         </div>
@@ -41,30 +42,30 @@ export function Footer() {
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white">Popular areas</h2>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
-            {areas
-              .filter((a) => featured.includes(a.slug))
-              .map((a) => (
-                <li key={a.slug}>
-                  <Link href={`/harare/${a.slug}`} className="hover:text-ice">
-                    {a.name}
-                  </Link>
-                </li>
-              ))}
+            {popular.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
           </ul>
+          <a href="/#locations" className="mt-3 inline-block text-sm text-white underline underline-offset-4 hover:text-ice">
+            All areas
+          </a>
         </div>
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-widest text-white">Services</h2>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>R134a regas from {site.regasFrom}</li>
-            <li>Leak detection</li>
-            <li>Compressor repairs</li>
-            <li>Aircon electrical faults</li>
+            <li>
+              {site.gas} regas from {site.regasFrom}
+            </li>
+            <li>Leak repairs</li>
+            <li>Compressor problems</li>
+            <li>Electrical and fan faults</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} {site.name} · {site.domain}
+      {/* Extra bottom padding on phones keeps this line clear of the floating WhatsApp button. */}
+      <div className="border-t border-white/10 px-4 pt-6 pb-24 text-center text-xs text-white/70 sm:pb-6">
+        © {site.name} · {site.domain}
       </div>
     </footer>
   )

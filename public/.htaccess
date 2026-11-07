@@ -1,0 +1,3 @@
+# For Apache/LiteSpeed hosts (cPanel). Other hosts ignore this file.
+# Show the site's own "Page not found" page for unknown addresses.
+ErrorDocument 404 /404.html

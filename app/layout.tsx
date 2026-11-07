@@ -4,36 +4,30 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FloatingWhatsApp } from "@/components/floating-whatsapp"
-import { areas, site } from "@/lib/site"
+import { baseOpenGraph, homeDescription, homeTitle } from "@/lib/metadata"
+import { areas, placeName, site } from "@/lib/site"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
+// Canonical URLs and og:url are set per page (see app/page.tsx), so they don't leak onto other pages.
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Car Aircon Regas Harare from ${site.regasFrom}`,
-    template: `%s | ${site.name}`,
+    default: homeTitle,
+    template: `%s | ${site.shortName}`,
   },
-  description: `${site.tagline} in Harare. R134a car aircon regas from ${site.regasFrom}, leak detection and repairs at your home or office. Call or WhatsApp ${site.phoneLocal}.`,
+  description: homeDescription,
   keywords: [
     "car aircon regas Harare",
     "car air conditioning Harare",
-    "R134a regas",
+    `${site.gas} regas`,
     "mobile car aircon",
     "car aircon repairs Zimbabwe",
     "aircon gas refill Harare",
-    "ProRegas",
+    site.shortName,
   ],
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "en_ZW",
-    url: site.url,
-    siteName: site.name,
-    title: `${site.name} | ${site.tagline}`,
-    description: `Mobile R134a car aircon regas from ${site.regasFrom} anywhere in Harare. Call or WhatsApp ${site.phoneLocal}.`,
-  },
-  robots: { index: true, follow: true },
+  openGraph: baseOpenGraph,
+  twitter: { card: "summary_large_image" },
 }
 
 export const viewport: Viewport = { themeColor: "#071a2f" }
@@ -47,17 +41,18 @@ const jsonLd = {
   telephone: site.phoneIntl,
   priceRange: `From ${site.regasFrom}`,
   address: { "@type": "PostalAddress", addressLocality: site.city, addressCountry: "ZW" },
-  areaServed: areas.map((a) => ({ "@type": "Place", name: `${a.name}, Harare` })),
+  areaServed: areas.map((a) => ({ "@type": "Place", name: placeName(a) })),
   makesOffer: {
     "@type": "Offer",
     itemOffered: { "@type": "Service", name: `${site.gas} car aircon regas` },
-    priceSpecification: { "@type": "PriceSpecification", minPrice: 30, priceCurrency: "USD" },
+    priceSpecification: { "@type": "PriceSpecification", minPrice: site.regasFromUsd, priceCurrency: "USD" },
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    // data-scroll-behavior lets Next turn smooth scrolling off during page changes.
+    <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Header />
