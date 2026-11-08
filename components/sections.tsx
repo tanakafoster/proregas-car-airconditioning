@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, Cog, Gauge, Layers, MapPin, Phone, Search, Snowflake, Truck, Zap } from "lucide-react"
+import { ArrowRight, CheckCircle2, Cog, Gauge, Layers, MapPin, Phone, Search, Snowflake, Truck, Wind, Zap } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons"
 import { QuoteForm } from "@/components/quote-form"
 import {
@@ -16,7 +16,7 @@ import {
   type ServiceSlug,
 } from "@/lib/site"
 
-const icons = { snowflake: Snowflake, search: Search, cog: Cog, layers: Layers, zap: Zap, gauge: Gauge }
+const icons = { snowflake: Snowflake, search: Search, wind: Wind, cog: Cog, layers: Layers, zap: Zap, gauge: Gauge }
 
 // tone "dark" is for blue backgrounds (white Call button); "light" is for white or pale blue backgrounds (blue Call button).
 export function CallButtons({ message, tone = "dark" }: { message?: string; tone?: "dark" | "light" }) {

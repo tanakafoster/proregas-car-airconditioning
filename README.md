@@ -12,7 +12,7 @@ Built with Next.js (App Router), React and Tailwind CSS. The build produces plai
 | Page | Address |
 | --- | --- |
 | Home: a short summary of everything below, with Call and WhatsApp buttons and the quote form | `/` |
-| Services, and a page for each of the 6 services (signs, common causes, what we do, questions) | `/services/`, `/services/car-aircon-regas/` and so on |
+| Services, and a page for each of the 7 services (signs, common causes, what we do, questions) | `/services/`, `/services/car-aircon-regas/` and so on |
 | Pricing: R134a regas from $30, what we need for a quote, repairs | `/pricing/` |
 | Areas, and a page for each of the 55 Harare suburbs and nearby towns | `/areas/`, `/areas/borrowdale/` and so on |
 | Car brands we regas, grouped by where the make comes from | `/car-brands/` |
@@ -48,7 +48,7 @@ Adding a suburb to `lib/site.ts` adds its page, its link on the Areas and home p
 
 The price is set once, as `regasFromUsd` in `lib/site.ts`. Every price on the site, the share image and the structured data use it.
 
-Before launch, the owner should confirm that 0771371600 is on WhatsApp (every WhatsApp button and the quote form use it), and check the car brand list, the services, the suburb list and the FAQ answers, which are draft copy.
+Before launch, the owner should confirm that 0771371600 is on WhatsApp (every WhatsApp button and the quote form use it), and check the car brand list, the evaporator, fan and check-up services (the owner asked for the others on 2026-11-08), the suburb list and the FAQ answers, which are draft copy.
 
 ## Run locally
 

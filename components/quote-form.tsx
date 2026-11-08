@@ -5,7 +5,7 @@ import { Phone } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons"
 import { areas, brands, defaultWhatsappMessage, site, telHref, whatsappNumber } from "@/lib/site"
 
-const issues = ["Aircon regas", "Not blowing cold", "Gas keeps running out", "Noise from the aircon", "Fan or electrical fault", "Other"]
+const issues = ["Aircon regas", "Not blowing cold", "Gas keeps running out", "Noise from the aircon", "Fan or electrical fault", "Cabin filter check", "Compressor or condenser replacement", "Other"]
 
 // defaultArea and defaultMake fill in the Location and Car make fields, e.g. on a suburb's or a car brand's page.
 export function QuoteForm({ defaultArea = "", defaultMake = "" }: { defaultArea?: string; defaultMake?: string }) {

@@ -13,6 +13,8 @@ export type ServicePage = {
   whatWeDo: string[]
   faqs: { q: string; a: string }[]
   sources: { label: string; url: string }[]
+  // The price box text, when the default ("We check what's causing it and quote you for the repair.") doesn't fit.
+  price?: string
 }
 
 export const servicePages: Record<ServiceSlug, ServicePage> = {
@@ -96,10 +98,47 @@ export const servicePages: Record<ServiceSlug, ServicePage> = {
       { label: "Natrad, 6 things you need to know about auto air con regassing", url: "https://natrad.com.au/info-advice/6-things-you-need-to-know-about-auto-air-con-regassing/" },
     ],
   },
+  "cabin-filter-replacement": {
+    metaTitle: "Car Cabin Filter Checks & Replacement, Harare",
+    metaDescription: "Weak airflow or a musty smell from your car's vents? A clogged cabin filter is a common cause. We check and replace cabin filters wherever you are in Harare.",
+    h1: "Car cabin filter checks and replacements in Harare",
+    price: "We check your filter and give you a price for a new one if it needs it.",
+    intro: "The cabin filter cleans the air before it comes out of your vents, trapping dust, pollen, soot and insects. In most modern cars it sits behind the glovebox or under the dashboard. When it clogs, less air gets through and the aircon can't cool the car as well. We come to you in Harare to check it, and replace it if it needs it.",
+    signs: [
+      "Air from the vents is weak, even on a high fan speed.",
+      "The aircon doesn't cool the car as well as it used to.",
+      "There's a musty smell, especially just after you switch the aircon on.",
+      "You've bought an imported car and don't know when the filter was last changed.",
+    ],
+    causes: [
+      { title: "Dust", text: "Filters clog faster in dusty, polluted or humid conditions, so they need checking more often if you drive on dusty roads." },
+      { title: "Age", text: "Most car makers recommend a new cabin filter at every service or once a year. An old filter keeps trapping dirt until little air can get through." },
+      { title: "An unknown history", text: "Recently imported cars can have very dirty filters. It's worth checking or changing the filter after you buy one, unless the dealer already has." },
+      { title: "Damp and smells", text: "An old, heavily contaminated filter can add to the germs in the aircon, which shows up as a musty smell. Some filters have an activated carbon layer that helps remove smells." },
+    ],
+    whatWeDo: [
+      "We come to you at home, at work or wherever your car is parked in Harare.",
+      "We check your cabin filter and replace it if it's dirty or clogged.",
+      "If the aircon still isn't cold with a clean filter, we check what is causing it and quote you for the repair.",
+      "Send us your car's make, model and year for a price. Call or WhatsApp 077 137 1600.",
+    ],
+    faqs: [
+      { q: "How often should the cabin filter be changed?", a: "Most car makers recommend a new one at every service or once a year. Follow your car's service schedule, and check the filter more often if you drive on dusty roads." },
+      { q: "Where is the cabin filter?", a: "In most modern cars it's behind the glovebox or under the dashboard, and occasionally outside, under the panel below the windscreen. Not every car has one." },
+      { q: "Can a clogged filter damage anything?", a: "It can. A blocked filter makes the blower fan work harder, which can wear out the blower motor and its resistor sooner." },
+      { q: "Will a new filter get rid of a musty smell?", a: "Often, because an old filter is a common cause. If the smell stays after a new filter, the evaporator behind the dashboard may need cleaning and disinfecting." },
+    ],
+    sources: [
+      { label: "HELLA Tech World, Cabin air filters", url: "https://www.hella.com/techworld/en/car-parts/filters/cabin-air-filters/" },
+      { label: "AA New Zealand, via Driven: Take care of those filters", url: "https://www.drivencarguide.co.nz/advice/aa-car-care-take-care-of-those-filters/" },
+      { label: "MAHLE Workshop Heroes, Aircon odours", url: "https://workshop-heroes.mahle.com/en/article/all-organic-right" },
+      { label: "Behr Hella Service, Ford Focus: strong odour and fogged windows (PDF)", url: "https://www.techtips.ie/Hella-Ireland/ford-focus---strong-odour-fogged-windows.pdf" },
+    ],
+  },
   "aircon-compressor-repairs": {
-    metaTitle: "Car Aircon Compressor Problems in Harare",
-    metaDescription: "Noisy aircon compressor, or a clutch that won't engage? Low gas, a fuse, a relay or a pressure switch can be to blame. We come to you in Harare.",
-    h1: "Car aircon compressor problems in Harare",
+    metaTitle: "Car Aircon Compressor Repair & Replacement, Harare",
+    metaDescription: "Noisy aircon compressor, or a clutch that won't engage? Low gas, a fuse, a relay or a pressure switch can be to blame. We repair and replace compressors in Harare.",
+    h1: "Car aircon compressor repair and replacement in Harare",
     intro: "The compressor is the pump that pushes the gas round your aircon, and it is usually driven by a belt from the engine. A strange noise, or a clutch that won't engage, does not always mean the compressor itself has failed. We come to you in Harare to check what is causing it.",
     signs: [
       "You hear a rattle or other new noise from under the bonnet when the aircon is on.",
@@ -117,6 +156,7 @@ export const servicePages: Record<ServiceSlug, ServicePage> = {
     whatWeDo: [
       "We come to you in Harare, at home, at work or wherever the car is parked.",
       "We check what is causing it and quote you for the repair.",
+      "If the compressor itself has failed, we can replace it.",
       "If low gas is the cause and your car uses R134a, a standard R134a regas starts from $30.",
       "Tell us what you hear and when it happens. Call or WhatsApp 077 137 1600.",
     ],
@@ -164,13 +204,13 @@ export const servicePages: Record<ServiceSlug, ServicePage> = {
     whatWeDo: [
       "We come to you at home, at work or wherever your car is parked in Harare.",
       "We check whether the condenser, the evaporator or something else is causing it, and quote you for the repair.",
+      "If the condenser is damaged or leaking, we can replace it.",
       "If your car uses R134a and only needs a regas, a standard regas starts from $30.",
     ],
     faqs: [
       { q: "Can I clean the condenser with a pressure washer?", a: "It is best not to. The fins are thin aluminium, and a pressure washer can bend or flatten them, which makes the condenser work less well. A gentle rinse is safer." },
       { q: "Will a regas fix a leaking condenser or evaporator?", a: "Only for a while. A regas refills the system, but if the gas is escaping through a leak it will run out again. Leak-stop products are not recommended for a leaking condenser either." },
       { q: "Why does my aircon smell musty?", a: "Start with the cabin filter, as an old one is a common cause of musty smells. If the smell stays after a new filter, the evaporator itself may need cleaning and disinfecting." },
-      { q: "How often should the cabin filter be changed?", a: "Most car makers say at every service or once a year. It clogs faster in dusty conditions, so check it more often if you drive on dusty roads. If your car is a recent import, check it anyway, as it may not have been changed." },
     ],
     sources: [
       { label: "MAHLE Workshop Heroes, The air conditioning condenser", url: "https://workshop-heroes.mahle.com/en/article/air-conditioning-condenser" },

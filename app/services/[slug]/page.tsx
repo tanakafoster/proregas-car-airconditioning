@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: Props) {
                 {site.gas} regas from <span className="text-ink">{site.regasFrom}</span>
               </p>
             ) : (
-              <p className="mt-1 text-xl font-bold text-navy">We check what's causing it and quote you for the repair.</p>
+              <p className="mt-1 text-xl font-bold text-navy">{page.price ?? "We check what's causing it and quote you for the repair."}</p>
             )}
           </div>
           <p className="mt-4 text-slate-600 sm:mt-0 sm:max-w-xs">
