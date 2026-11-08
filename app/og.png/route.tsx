@@ -34,7 +34,7 @@ export async function GET() {
           justifyContent: "space-between",
           padding: "64px 72px",
           color: "white",
-          backgroundImage: "linear-gradient(135deg, #1e3a8a, #1e40af 60%)",
+          backgroundImage: "linear-gradient(135deg, #022c5e, #034694 60%)",
           // Only set fontFamily when Inter loaded: an undefined style value crashes the renderer.
           ...(bold ? { fontFamily: "Inter" } : {}),
         }}
@@ -42,14 +42,14 @@ export async function GET() {
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <svg width="96" height="96" viewBox="0 0 48 48">
             <rect width="48" height="48" rx="12" fill="#ffffff" />
-            <g stroke="#1d4ed8" strokeWidth="3" strokeLinecap="round" fill="none">
+            <g stroke="#034694" strokeWidth="3" strokeLinecap="round" fill="none">
               <path d="M24 9v30M11 16.5l26 15M37 16.5l-26 15" />
               <path d="M19.5 10.5 24 14l4.5-3.5M19.5 37.5 24 34l4.5 3.5" />
             </g>
           </svg>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: 56 }}>
-              Pro<span style={{ color: "#bfdbfe" }}>Regas</span>
+              Pro<span style={{ color: "#c8dcf2" }}>Regas</span>
             </div>
             <div style={{ fontSize: 24, letterSpacing: 6, color: "rgba(255,255,255,0.75)" }}>CAR AIR CONDITIONING</div>
           </div>
@@ -63,7 +63,7 @@ export async function GET() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 34 }}>
-          <div style={{ display: "flex", background: "#ffffff", color: "#1e3a8a", padding: "14px 32px", borderRadius: 999 }}>
+          <div style={{ display: "flex", background: "#ffffff", color: "#022c5e", padding: "14px 32px", borderRadius: 999 }}>
             Call or WhatsApp {site.phoneDisplay}
           </div>
           <div style={{ color: "rgba(255,255,255,0.75)", fontSize: 28 }}>{site.domain}</div>

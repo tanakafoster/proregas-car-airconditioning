@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* White and royal blue. Text colours are checked for contrast (WCAG AA): royal #1d4ed8 is 6:1 or more on white,
-   ice-soft and slate-50, and white, white/70 and ice are 5:1 or more on the .frost blues. */
+/* White and Chelsea blue (#034694). Text colours are checked for contrast (WCAG AA): Chelsea blue is 8:1 or more on white,
+   ice-soft and slate-50, and white, white/70 and ice are 4.5:1 or more on the .frost blues and the footer. */
 @theme {
-  --color-ink: #0f1e45;
-  --color-navy: #1e40af;
-  --color-navy-light: #1d4ed8;
-  --color-royal: #1d4ed8;
-  --color-royal-dark: #1e3a8a;
-  /* Light blue for accents on royal blue backgrounds. */
-  --color-ice: #bfdbfe;
-  /* Royal blue for accents and links on white. */
-  --color-ice-deep: #1d4ed8;
-  --color-ice-soft: #eef4ff;
+  --color-ink: #0c1d3b;
+  --color-navy: #034694;
+  /* "royal" is the main brand blue: Chelsea blue. */
+  --color-royal: #034694;
+  --color-royal-dark: #022c5e;
+  /* Light blue for accents on the blue backgrounds. */
+  --color-ice: #c8dcf2;
+  /* Chelsea blue for accents and links on white. */
+  --color-ice-deep: #034694;
+  --color-ice-soft: #edf3fb;
   --color-whatsapp: #25d366;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
@@ -26,9 +26,9 @@ html { scroll-padding-top: 5rem; scroll-padding-bottom: 5.5rem; }
 
 body { background: #ffffff; color: var(--color-ink); }
 
-/* Royal blue bands (hero, pricing, contact). Kept between #1e3a8a and #1e40af so white text stays readable. */
+/* Blue bands (hero, pricing, contact), from dark blue to Chelsea blue. The highlight is kept faint so white/70 text stays readable. */
 .frost {
   background-image:
-    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.1), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.08), transparent 40%),
     linear-gradient(135deg, var(--color-royal-dark), var(--color-navy) 60%);
 }

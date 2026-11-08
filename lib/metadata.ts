@@ -9,7 +9,7 @@ function shortHash(text: string) {
   return h.toString(36)
 }
 // Bump "design" when the image's look changes.
-const design = "white-royal-blue"
+const design = "white-chelsea-blue"
 const ogVersion = shortHash([design, site.tagline, site.gas, site.regasFrom, site.city, site.phoneDisplay, site.domain].join("|"))
 
 export const homeTitle = `${site.name} | Car Aircon Regas ${site.city} from ${site.regasFrom}`
