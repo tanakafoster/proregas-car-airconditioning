@@ -18,7 +18,7 @@ import {
 
 const icons = { snowflake: Snowflake, search: Search, cog: Cog, layers: Layers, zap: Zap, gauge: Gauge }
 
-// tone "dark" is for royal blue backgrounds (white Call button); "light" is for white or pale blue backgrounds (royal blue Call button).
+// tone "dark" is for blue backgrounds (white Call button); "light" is for white or pale blue backgrounds (blue Call button).
 export function CallButtons({ message, tone = "dark" }: { message?: string; tone?: "dark" | "light" }) {
   const call = tone === "dark" ? "bg-white text-navy shadow-black/10" : "bg-royal text-white shadow-royal/20"
   return (
