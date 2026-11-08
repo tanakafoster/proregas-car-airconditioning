@@ -1,8 +1,10 @@
 // Business details and most of the site's wording live in this file. The longer service page text is in lib/service-pages.ts,
 // and the short description of each suburb is in lib/area-facts.ts.
 // The owner confirmed: name, tagline, phone number, domain, R134a gas, "regas starts from $30" and Harare.
-// Still to confirm with the owner: that 0771371600 is on WhatsApp, the car brand list, the services,
-// the suburb list and the FAQ answers. These are draft copy.
+// On 2026-11-08 the owner asked for these services: regas, gas leak repair, cabin filter checks and replacements,
+// compressor and condenser replacement, and electrical faults.
+// Still to confirm with the owner: that 0771371600 is on WhatsApp, the car brand list, the evaporator, fan and check-up
+// services, the suburb list and the FAQ answers. These are draft copy.
 
 const regasFromUsd = 30
 
@@ -40,20 +42,26 @@ export const services = [
   },
   {
     slug: "aircon-leak-repairs",
-    title: "Leak Repairs",
+    title: "Gas Leak Repairs",
     description: "Gas keeps running out? There's usually a leak somewhere in the system. We check what's causing it and quote you for the repair.",
     icon: "search",
   },
   {
+    slug: "cabin-filter-replacement",
+    title: "Cabin Filter Checks & Replacements",
+    description: "Weak airflow or a musty smell from the vents? We check your cabin filter and replace it if it's dirty or clogged.",
+    icon: "wind",
+  },
+  {
     slug: "aircon-compressor-repairs",
-    title: "Compressor Problems",
-    description: "Noisy compressor, or the aircon clutch won't engage? We check what's causing it and quote you for the repair.",
+    title: "Compressor Repair & Replacement",
+    description: "Noisy compressor, or the aircon clutch won't engage? We check what's causing it, and repair or replace the compressor.",
     icon: "cog",
   },
   {
     slug: "condenser-evaporator-repairs",
     title: "Condenser & Evaporator",
-    description: "Blocked or damaged condensers and evaporators stop your aircon from cooling properly. We check them and quote you for the repair.",
+    description: "Blocked or damaged condensers and evaporators stop your aircon from cooling properly. We check them and replace a damaged condenser.",
     icon: "layers",
   },
   {
