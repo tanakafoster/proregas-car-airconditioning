@@ -72,14 +72,24 @@ export function Hero() {
           </ul>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="rounded-3xl border border-white/15 bg-white/10 p-8 text-center backdrop-blur">
-            <Snowflake className="mx-auto h-14 w-14 text-ice" aria-hidden="true" />
-            <p className="mt-4 text-sm uppercase tracking-widest text-white/80">{site.gas} car aircon regas</p>
-            <p className="mt-2 text-lg text-white/80">from</p>
-            <p className="text-7xl font-extrabold text-white">{site.regasFrom}</p>
-            <p className="mt-4 text-sm text-white/80">Send us your car's make, model, year and location for a quote.</p>
-            <Link href="/pricing" className="mt-6 inline-block text-sm font-semibold text-white underline underline-offset-4 hover:text-ice">
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+          {/* The owner's photo, cropped to a square and saved at two sizes in public/images/. On phones the price card sits
+              below the photo's right corner so it doesn't hide the R134a cylinder on the left. */}
+          <img
+            src="/images/hero-regas-640.webp"
+            srcSet="/images/hero-regas-640.webp 640w, /images/hero-regas-1200.webp 1200w"
+            sizes="(min-width: 1024px) 34rem, (min-width: 448px) 28rem, 100vw"
+            width={1200}
+            height={1200}
+            alt="A technician regassing a car's aircon, with an R134a gas cylinder and a regas machine in front of the car"
+            className="aspect-square w-full rounded-3xl object-cover shadow-2xl ring-1 ring-white/15"
+          />
+          <div className="relative -mt-10 mr-3 ml-auto w-52 rounded-2xl bg-white p-4 text-center text-ink shadow-xl sm:absolute sm:right-4 sm:bottom-4 sm:m-0 sm:w-60 sm:p-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 sm:tracking-widest">{site.gas} car aircon regas</p>
+            <p className="mt-1 text-slate-600">
+              from <span className="text-5xl font-extrabold text-navy">{site.regasFrom}</span>
+            </p>
+            <Link href="/pricing" className="mt-2 inline-block text-sm font-semibold text-navy underline underline-offset-4 hover:text-ice-deep">
               See pricing →
             </Link>
           </div>
