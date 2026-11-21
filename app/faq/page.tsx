@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { BookingBox, H2, JsonLd, PageHero } from "@/components/page"
 import { FaqList } from "@/components/sections"
+import { guideLinks } from "@/lib/guides"
 import { pageMetadata } from "@/lib/metadata"
 import { faqs, services, site } from "@/lib/site"
 
@@ -36,11 +37,13 @@ export default function Faq() {
         <section className="mt-14" aria-labelledby="more">
           <H2 id="more">More answers</H2>
           <ul className="mt-6 space-y-3 text-lg">
-            <li>
-              <Link href="/which-aircon-gas" className="font-semibold text-navy underline">
-                Which aircon gas does my car use?
-              </Link>
-            </li>
+            {guideLinks.map((g) => (
+              <li key={g.href}>
+                <Link href={g.href} className="font-semibold text-navy underline">
+                  {g.label}
+                </Link>
+              </li>
+            ))}
             {services.map((s) => (
               <li key={s.slug}>
                 <Link href={`/services/${s.slug}`} className="font-semibold text-navy underline">

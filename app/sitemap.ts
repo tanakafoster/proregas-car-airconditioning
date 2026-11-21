@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { guides } from "@/lib/guides"
 import { areas, brandList, services, site } from "@/lib/site"
 
 export const dynamic = "force-static"
@@ -22,5 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/faq/", 0.6),
     page("/contact/", 0.7),
     page("/which-aircon-gas/", 0.6, "yearly"),
+    page("/guides/", 0.6),
+    ...guides.map((g) => page(`/guides/${g.slug}/`, 0.6, "yearly")),
   ]
 }
