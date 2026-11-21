@@ -1,5 +1,6 @@
 import { MapPin, Phone } from "lucide-react"
 import { Logo, WhatsAppIcon } from "@/components/icons"
+import { guideLinks } from "@/lib/guides"
 import { popularAreas, services, site, telHref, whatsappHref } from "@/lib/site"
 
 const pages = [
@@ -89,9 +90,16 @@ export function Footer() {
           </ul>
           <Heading className="mt-8">Guides</Heading>
           <ul className="mt-4 space-y-2 text-sm">
+            {guideLinks.map((g) => (
+              <li key={g.href}>
+                <a href={g.href} className={linkClass}>
+                  {g.label}
+                </a>
+              </li>
+            ))}
             <li>
-              <a href="/which-aircon-gas/" className="text-white underline underline-offset-4 hover:text-ice">
-                Which aircon gas does my car use?
+              <a href="/guides/" className="text-white underline underline-offset-4 hover:text-ice">
+                All guides
               </a>
             </li>
           </ul>
